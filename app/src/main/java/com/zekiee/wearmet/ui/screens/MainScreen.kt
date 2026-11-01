@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun StartScreen() {
+fun MainScreen() {
 
 }
 
 @Preview
 @Composable
-fun showStartScreen() {
-    StartScreen()
+fun ShowMainScreen() {
+    MainScreen()
 }
