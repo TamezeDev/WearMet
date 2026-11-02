@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    // Serialization for Routes in NavRoutes
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -57,5 +58,12 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.kotlinx.serialization.core)
+
+    // Retrofit
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.converter.gson)
+
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 }

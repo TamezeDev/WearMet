@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WearMet</string>
+    <string name="search_hint">Buscar ciudad</string>
+    <string name="no_results">No se encontraron resultados</string>
+    <string name="error_server">Error recibiendo datos del servidor</string>
+    <string name="error_network">Operacion cancelada</string>
+    <string name="error_unknown">Error inesperado del servidor</string>
+
 </resources>

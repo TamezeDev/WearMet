@@ -15,7 +15,7 @@ import com.zekiee.wearmet.ui.theme.StartGradientBg
 fun CurrentInfo() {
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(backgroundGradient))
+        .background(backgroundGradient)    )
 }
 
 @Preview
