@@ -10,25 +10,51 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zekiee.wearmet.R
 import com.zekiee.wearmet.domain.result.LocationResult
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlin.time.Duration.Companion.milliseconds
 
+@OptIn(FlowPreview::class)
 class LocationViewModel : ViewModel() {
     private val repository = LocationRepository()
-    var uiState by mutableStateOf<GeoCodingState>(GeoCodingState.Loading)
-    var errorMessage by mutableStateOf<String?>(null)
+    private val textRequest = MutableStateFlow("")
+    var uiState by mutableStateOf<GeoCodingState>(GeoCodingState.Waiting)
+
+    init {
+        viewModelScope.launch {
+            textRequest
+                .debounce(400.milliseconds)
+                .map { it.trim() }
+                .distinctUntilChanged()
+                .collectLatest {
+                    if (it.length < 3) uiState = GeoCodingState.Waiting
+                    else getLocations(it)
+                }
+        }
+    }
+
+    fun onTextChange(text: String) {
+        textRequest.value = text
+    }
 
     fun getLocations(searchText: String) {
         uiState = GeoCodingState.Loading
         viewModelScope.launch {
 
-            when (val result = repository.getLocations(searchText)) {
+            uiState = when (val result = repository.getLocations(searchText)) {
                 is LocationResult.Success -> {
-                    if (result.locations.isEmpty()) errorMessage = R.string.no_results.toString()
-                    else uiState = GeoCodingState.Success(result.locations)
+                    if (result.locations.isEmpty()) GeoCodingState.Error(R.string.no_results)
+                    else GeoCodingState.Success(result.locations)
                 }
 
-                LocationResult.NetworkError -> errorMessage = R.string.error_network.toString()
-                LocationResult.ServerError -> errorMessage = R.string.error_server.toString()
-                LocationResult.UnknownError -> errorMessage = R.string.error_unknown.toString()
+                LocationResult.NetworkError -> GeoCodingState.Error(R.string.error_network)
+
+                LocationResult.ServerError -> GeoCodingState.Error(R.string.error_server)
+                LocationResult.UnknownError -> GeoCodingState.Error(R.string.error_unknown)
             }
         }
     }

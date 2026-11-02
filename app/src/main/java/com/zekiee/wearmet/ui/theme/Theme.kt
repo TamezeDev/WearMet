@@ -1,57 +1,83 @@
 package com.zekiee.wearmet.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DarkPrimary,
+    onPrimary = DarkOnBrand,
+    secondary = DarkSecondary,
+    onSecondary = DarkOnBrand,
+    tertiary = Highlight,
+    onTertiary = DarkOnBrand,
+    background = DarkBgMiddle,
+    onBackground = DarkTextPrimary,
+    surface = DarkSurfaceCard,
+    onSurface = DarkTextPrimary,
+    error = DarkRiskExtreme,
+    onError = DarkOnBrand
+)
+
+private val DarkExtendedColors = ExtendedColors(
+    backgroundBrush = Brush.verticalGradient(listOf(DarkBgTop, DarkBgMiddle, DarkBgBottom)),
+    textSecondary = DarkTextSecondary,
+    riskGood = DarkRiskGood,
+    riskWarning = DarkRiskWarning,
+    riskExtreme = DarkRiskExtreme
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Primary,
+    onPrimary = OnBrand,
+    secondary = Secondary,
+    onSecondary = OnBrand,
+    tertiary = Highlight,
+    onTertiary = OnBrand,
+    background = BgMiddle,
+    onBackground = TextPrimary,
+    surface = SurfaceCard,
+    onSurface = OnBrand,
+    error = RiskExtreme,
+    onError = TextPrimary
 )
+
+data class ExtendedColors(
+    val backgroundBrush: Brush,
+    val textSecondary: Color,
+    val riskGood: Color,
+    val riskWarning: Color,
+    val riskExtreme: Color
+)
+
+private val WearMetExtendedColors = ExtendedColors(
+    backgroundBrush = Brush.verticalGradient(listOf(BgTop, BgMiddle, BgBottom)),
+    textSecondary = TextSecondary,
+    riskGood = RiskGood,
+    riskWarning = RiskWarning,
+    riskExtreme = RiskExtreme
+)
+
+val LocalExtendedColors = staticCompositionLocalOf { WearMetExtendedColors }
+
+val MaterialTheme.extendedColors: ExtendedColors
+    @Composable get() = LocalExtendedColors.current
 
 @Composable
 fun WearMetTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val extended = if (darkTheme) DarkExtendedColors else WearMetExtendedColors
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    CompositionLocalProvider(LocalExtendedColors provides extended) {
+        MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
 }

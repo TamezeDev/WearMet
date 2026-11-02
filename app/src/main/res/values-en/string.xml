@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WearMet</string>
     <string name="search_hint">Search city</string>
+    <string name="my_location">Search from my location</string>
     <string name="no_results">Not found results</string>
     <string name="error_server">Error getting data from server</string>
     <string name="error_network">Operation cancelled</string>

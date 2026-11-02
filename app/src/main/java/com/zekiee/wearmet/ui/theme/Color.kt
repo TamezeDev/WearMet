@@ -2,30 +2,51 @@ package com.zekiee.wearmet.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
-
 // ======== APP COLORS =======
 
-// BACKGROUND
-val StartGradientBg = Color(0xFF059F8C)
-val MiddleGradientBg = Color(0xFF026456)
-val EndGradientBg = Color(0xFF004940)
+// -------- DARK MODE -------------
+// Main background ()
+val DarkBgTop = Color(0xFF0B2F2A)
+val DarkBgMiddle = Color(0xFF06201C)
+val DarkBgBottom = Color(0xFF031210)
 
-// PALETTE COLORS
-val PrimaryColor = Color(0xFF8B6DB4)
-val SecondaryColor = Color(0xFF7F3CA9)
-val GoodColor = Color(0xFF9ABED2)
-val WarningColor = Color(0xFFB65E0E)
-val ExtremeColor = Color(0xFFA9161B)
-val AccentColor = Color(0xFF05342E)
-val UnfocusedBgColor = Color(0xF3C7C7C7)
+// Text
+val DarkTextPrimary = Color(0xFFE4F3F0)
+val DarkTextSecondary = Color(0xFF9CC4BC)
 
+// Branch
+val DarkPrimary = Color(0xFF7DD6C4)
+val DarkSecondary = Color(0xFF5FA89A)
+val DarkOnBrand = Color(0xFF03231F)
 
-// TEXT COLORS
-val PrimaryTextColor = Color(0xFFE7E7E7)
+// Surface
+val DarkSurfaceCard = Color(0xFF12413A)
+
+// Risk Level
+val DarkRiskGood = Color(0xFF7FA9C0)
+val DarkRiskWarning = Color(0xFFE08A3C)
+val DarkRiskExtreme = Color(0xFFE5645F)
+
+// --------- LIGHT MODE -----------
+// Main background ()
+val BgTop = Color(0xFF059F8C)
+val BgMiddle = Color(0xFF026456)
+val BgBottom = Color(0xFF004940)
+
+// Text
+val TextPrimary = Color(0xFFF2FAF8)
+val TextSecondary = Color(0xFFB8DDD6)
+
+// Branch
+val Primary = Color(0xFFA8E6DA)
+val Secondary = Color(0xFF7DC2B4)
+val OnBrand = Color(0xFF05342E)
+val Highlight = Color(0xFFF2C879)
+
+// Surface
+val SurfaceCard = Color(0xFFE6F4F1)
+
+// Risk Level
+val RiskGood = Color(0xFF9ABED2)
+val RiskWarning = Color(0xFFB65E0E)
+val RiskExtreme = Color(0xFFA9161B)

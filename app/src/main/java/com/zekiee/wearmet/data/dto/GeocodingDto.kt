@@ -9,25 +9,22 @@ data class GeocodingDto(
     val latitude: Double?,
     val longitude: Double?,
     @SerializedName("country_code") val countryCode: String?,
-    val country: String?,
     @SerializedName("admin1") val region: String?,
-    val population: Int?
 )
 
 fun GeocodingDto.toDomain(): Location? {
+    val idLocation = id ?: return null
     val nameLocation = name ?: return null
     val latitudeLocation = latitude ?: return null
     val longitudeLocation = longitude ?: return null
+    val countryCodeLoc = countryCode ?: return null
 
     return Location(
-        id,
+        idLocation,
         nameLocation,
         latitudeLocation,
         longitudeLocation,
-        countryCode,
-        country,
-        region,
-        population
-    )
+        countryCodeLoc,
+        region)
 
 }
