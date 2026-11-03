@@ -1,11 +1,15 @@
 package com.zekiee.wearmet.data.api
 
 object ManageApiService {
-
-    val geocodingApiService: GeocodingService by lazy {
-        GeocodingApiService.retrofit.create(
-            GeocodingService::class.java
+    val geocodingApiService: GeocodingApiService by lazy {
+        ApiConnection.retrofit(ApiUrl.BASE_URL_GEOCODING).create(
+            GeocodingApiService::class.java
         )
     }
 
+    val openMeteoApiService: OpenMeteoApiService by lazy {
+        ApiConnection.retrofit(ApiUrl.BASE_URL_OPEN_METEO).create(
+            OpenMeteoApiService::class.java
+        )
+    }
 }

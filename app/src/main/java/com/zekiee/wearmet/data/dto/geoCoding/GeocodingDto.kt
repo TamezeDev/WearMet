@@ -1,4 +1,4 @@
-package com.zekiee.wearmet.data.dto
+package com.zekiee.wearmet.data.dto.geoCoding
 
 import com.google.gson.annotations.SerializedName
 import com.zekiee.wearmet.domain.model.Location

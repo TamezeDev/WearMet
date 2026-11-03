@@ -3,8 +3,9 @@ package com.zekiee.wearmet.data.repository
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.zekiee.wearmet.data.api.ManageApiService
-import com.zekiee.wearmet.data.dto.toDomain
+import com.zekiee.wearmet.data.dto.geoCoding.toDomain
 import com.zekiee.wearmet.domain.result.LocationResult
+import java.io.IOException
 import java.util.concurrent.CancellationException
 
 class LocationRepository {
@@ -22,6 +23,8 @@ class LocationRepository {
             }
 
         } catch (e: CancellationException) {
+            throw e
+        } catch (e: IOException) {
             Log.e(TAG, "No connection available", e)
             LocationResult.NetworkError
         } catch (e: Exception) {
