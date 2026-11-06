@@ -11,7 +11,7 @@ import java.io.IOException
 class OpenMeteoRepository {
     suspend fun getWeatherData(latitude: Double, longitude: Double): WeatherResult {
         return try {
-            val response = ManageApiService.openMeteoApiService.obtenerTiempo(longitude, latitude)
+            val response = ManageApiService.openMeteoApiService.obtenerTiempo(latitude, longitude)
 
             if (response.isSuccessful) {
                 val weather = response.body()?.toDomain()

@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.zekiee.wearmet.R
 import kotlinx.coroutines.delay
@@ -23,8 +24,8 @@ fun SplashScreen(onTimeout: () -> Unit) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(R.drawable.splash_wearmet),
-            contentDescription = "Logo de bienvenida",
+            painter = painterResource(R.drawable.ic_splash_wearmet),
+            contentDescription = stringResource(R.string.alt_welcome_image),
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )

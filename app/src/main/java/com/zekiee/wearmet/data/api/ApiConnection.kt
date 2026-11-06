@@ -1,6 +1,5 @@
 package com.zekiee.wearmet.data.api
 
-import com.zekiee.wearmet.data.api.OpenMeteoApi.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

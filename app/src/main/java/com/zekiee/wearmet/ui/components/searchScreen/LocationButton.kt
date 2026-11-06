@@ -17,7 +17,6 @@ import com.zekiee.wearmet.ui.theme.WearMetTheme
 fun LocationButton() {
     Button(
         onClick = {},
-
         shape = RoundedCornerShape(12.dp)
     ) {
         Text(

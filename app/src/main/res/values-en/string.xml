@@ -6,5 +6,53 @@
     <string name="error_server">Error getting data from server</string>
     <string name="error_network">Operation cancelled</string>
     <string name="error_unknown">Unexpected error from server</string>
+    <string name="favourites_locations">Favourites</string>
+    <string name="settings">Settings</string>
 
+    <!-- DESCRIPTION IMAGES -->
+    <string name="alt_welcome_image">Welcome logo</string>
+    <string name="alt_opt_menu">Options menu</string>
+    <string name="alt_favourite_icon">Favourite icon</string>
+    <string name="alt_settings_icon">Settings icon</string>
+    <string name="alt_refresh">Refresh</string>
+    <string name="alt_remove_favourite">Remove from favourites</string>
+    <string name="alt_add_favourite">Add to favourites</string>
+    <string name="alt_search_icon">New Search</string>
+
+    <!-- WEATHER CONDITIONS -->
+    <string name="weather_clear">Clear</string>
+    <string name="weather_partly_cloudy">Partly cloudy</string>
+    <string name="weather_cloudy">Cloudy</string>
+    <string name="weather_fog">Fog</string>
+    <string name="weather_drizzle">Drizzle</string>
+    <string name="weather_rain">Rain</string>
+    <string name="weather_snow">Snow</string>
+    <string name="weather_thunderstorm">Thunderstorm</string>
+
+    <!-- DETAILS -->
+    <string name="detail_humidity">Humidity</string>
+    <string name="detail_wind">Wind</string>
+    <string name="detail_pressure">Pressure</string>
+    <string name="detail_clouds">Cloud cover</string>
+    <string name="detail_precipitation">Precipitation</string>
+    <string name="detail_uv">UV index</string>
+    <string name="detail_sunrise">Sunrise</string>
+    <string name="detail_sunset">Sunset</string>
+
+    <!-- TEXTS WITH VALUES -->
+    <string name="feels_like">Feels like %1$d°</string>
+    <string name="max_min">High %1$d° · Low %2$d°</string>
+    <string name="value_kmh">%1$d km/h</string>
+    <string name="detail_gusts">Gusts</string>
+    <string name="unit_kmh">km/h</string>
+    <string name="hours_title">Next hours</string>
+    <string name="now">Now</string>
+    <string name="daily_title">Next 7 days</string>
+    <string name="today">Today</string>
+    <string name="alt_expand_hours">Show hours</string>
+    <string name="alt_collapse_hours">Hide hours</string>
+    <string name="details_title">Details</string>
+    <string name="hourly_title">Next hours</string>
+    <string name="loading">Loading current time...</string>
+    <string name="retry">Retry</string>
 </resources>

@@ -12,7 +12,10 @@ import com.zekiee.wearmet.ui.theme.WearMetTheme
 
 
 @Composable
-fun LocationList(locations: List<Location>, onClick: (Double, Double) -> Unit) {
+fun LocationList(
+    locations: List<Location>,
+    onLocationClick: (Location) -> Unit
+) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 300.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -21,22 +24,7 @@ fun LocationList(locations: List<Location>, onClick: (Double, Double) -> Unit) {
         items(items = locations, key = { it.id }) { location ->
             LocationItem(
                 location = location,
-                onClick = onClick
-            )
+                onClick = { onLocationClick(location) })
         }
     }
 }
-
-@Preview
-@Composable
-fun ShowLocationList() {
-    WearMetTheme {
-        LocationList(previewLocations, onClick = { _, _ -> })
-    }
-}
-
-
-val previewLocations = listOf(
-    previewLocation,
-    previewLocation.copy(id = 2, name = "Los Barrios", latitude = 36.53, longitude = -6.29)
-)

@@ -9,7 +9,6 @@ import java.io.IOException
 import java.util.concurrent.CancellationException
 
 class LocationRepository {
-
     suspend fun getLocations(searchLocation: String): LocationResult {
         return try {
             val response = ManageApiService.geocodingApiService.searchLocation(searchLocation)

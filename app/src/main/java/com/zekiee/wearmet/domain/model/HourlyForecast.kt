@@ -6,5 +6,7 @@ data class HourlyForecast(
     val time: LocalDateTime,
     val temperature: Double,
     val precipitationProbability: Int,
-    val weatherCode: Int
+    val weatherCode: Int,
+    val windSpeed: Double,
+    val windDirection: Int
 )

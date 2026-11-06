@@ -65,5 +65,9 @@ dependencies {
 
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Icons
+    implementation(libs.androidx.compose.material.icons.core)
+// Lottie
+    implementation(libs.lottie.compose)
 
 }

@@ -18,7 +18,11 @@ import com.zekiee.wearmet.ui.theme.WearMetTheme
 import java.util.Locale
 
 @Composable
-fun LocationItem(location: Location, onClick: (Double, Double) -> Unit) {
+fun LocationItem(
+    location: Location,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     val countryName = remember(location.countryCode) {
         runCatching {
             Locale.Builder().setRegion(location.countryCode).build()
@@ -30,8 +34,8 @@ fun LocationItem(location: Location, onClick: (Double, Double) -> Unit) {
         .joinToString(", ")
 
     Card(
-        onClick = { onClick(location.latitude, location.longitude) },
-        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
+        modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurface
@@ -61,8 +65,7 @@ fun LocationItem(location: Location, onClick: (Double, Double) -> Unit) {
 @Composable
 fun ShowLocationItem() {
     WearMetTheme {
-        LocationItem(location = previewLocation, onClick = { _, _ -> })
-    }
+        LocationItem(location = previewLocation, onClick = {})    }
 }
 
 val previewLocation = Location(

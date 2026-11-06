@@ -6,5 +6,53 @@
     <string name="error_server">Error recibiendo datos del servidor</string>
     <string name="error_network">Operacion cancelada</string>
     <string name="error_unknown">Error inesperado del servidor</string>
+    <string name="favourites_locations">Favoritos</string>
+    <string name="settings">Configuración</string>
 
+    <!-- DESCRIPTION TEXTS -->
+    <string name="alt_welcome_image">Logo de bienvenida</string>
+    <string name="alt_opt_menu">Menú de opciones</string>
+    <string name="alt_favourite_icon">Icono de favoritos</string>
+    <string name="alt_settings_icon">Icono de ajustes</string>
+    <string name="alt_refresh">Actualizar</string>
+    <string name="alt_remove_favourite">Eliminar de favoritos</string>
+    <string name="alt_add_favourite">Añadir a favoritos</string>
+    <string name="alt_search_icon">Búsqueda nueva</string>
+
+    <!-- CONDICIONES DEL TIEMPO -->
+    <string name="weather_clear">Despejado</string>
+    <string name="weather_partly_cloudy">Parcialmente nublado</string>
+    <string name="weather_cloudy">Nublado</string>
+    <string name="weather_fog">Niebla</string>
+    <string name="weather_drizzle">Llovizna</string>
+    <string name="weather_rain">Lluvia</string>
+    <string name="weather_snow">Nieve</string>
+    <string name="weather_thunderstorm">Tormenta</string>
+
+    <!-- DETALLES -->
+    <string name="detail_humidity">Humedad</string>
+    <string name="detail_wind">Viento</string>
+    <string name="detail_pressure">Presión</string>
+    <string name="detail_clouds">Nubosidad</string>
+    <string name="detail_precipitation">Precipitación</string>
+    <string name="detail_uv">Índice UV</string>
+    <string name="detail_sunrise">Amanecer</string>
+    <string name="detail_sunset">Atardecer</string>
+
+    <!-- TEXTOS CON VALORES -->
+    <string name="feels_like">Sensación %1$d°</string>
+    <string name="max_min">Máx %1$d° · Mín %2$d°</string>
+    <string name="value_kmh">%1$d km/h</string>
+    <string name="detail_gusts">Ráfagas</string>
+    <string name="unit_kmh">km/h</string>
+    <string name="hours_title">Próximas horas</string>
+    <string name="now">Ahora</string>
+    <string name="daily_title">Próximos 7 días</string>
+    <string name="today">Hoy</string>
+    <string name="alt_expand_hours">Mostrar horas</string>
+    <string name="alt_collapse_hours">Ocultar horas</string>
+    <string name="details_title">Detalles</string>
+    <string name="hourly_title">Próximas horas</string>
+    <string name="loading">Cargando el tiempo…</string>
+    <string name="retry">Reintentar</string>
 </resources>

@@ -3,12 +3,12 @@ package com.zekiee.wearmet.ui.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.zekiee.wearmet.data.repository.LocationRepository
 import com.zekiee.wearmet.ui.state.GeoCodingState
 import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zekiee.wearmet.R
+import com.zekiee.wearmet.data.repository.LocationRepository
 import com.zekiee.wearmet.domain.result.LocationResult
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
