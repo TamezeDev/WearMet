@@ -55,4 +55,10 @@
     <string name="hourly_title">Próximas horas</string>
     <string name="loading">Cargando el tiempo…</string>
     <string name="retry">Reintentar</string>
+    <string name="favourite_added">Añadido a favoritos</string>
+    <string name="favourite_removed">Quitado de favoritos</string>
+    <string name="splash_developed_by">Desarrollado por Ezequiel Tamayo</string>
+    <string name="location_permission_denied">Sin permiso de ubicación</string>
+    <string name="location_unavailable">No se pudo obtener tu ubicación</string>
+    <string name="location_disabled">Activa la ubicación para continuar</string>
 </resources>

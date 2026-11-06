@@ -55,4 +55,10 @@
     <string name="hourly_title">Next hours</string>
     <string name="loading">Loading current time...</string>
     <string name="retry">Retry</string>
+    <string name="favourite_added">Add to favourite list</string>
+    <string name="favourite_removed">Removed from favourite list</string>
+    <string name="splash_developed_by">Developed by Ezequiel Tamayo</string>
+    <string name="location_permission_denied">Without location permission</string>
+    <string name="location_unavailable">Not possible get your location</string>
+    <string name="location_disabled">Turn on location to continue</string>
 </resources>

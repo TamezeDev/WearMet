@@ -14,9 +14,9 @@ import com.zekiee.wearmet.R
 import com.zekiee.wearmet.ui.theme.WearMetTheme
 
 @Composable
-fun LocationButton() {
+fun LocationButton(onClick: () -> Unit) {
     Button(
-        onClick = {},
+        onClick = onClick,
         shape = RoundedCornerShape(12.dp)
     ) {
         Text(
@@ -33,6 +33,6 @@ fun LocationButton() {
 @Composable
 fun ShorLocationButton() {
     WearMetTheme {
-        LocationButton()
+        LocationButton({})
     }
 }

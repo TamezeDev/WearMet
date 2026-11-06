@@ -75,4 +75,6 @@ dependencies {
     ksp(libs.androidx.room3.compiler)
     implementation(libs.androidx.sqlite.bundled)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    // Location
+    implementation(libs.play.services.location)
 }
