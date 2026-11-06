@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     // Serialization for Routes in NavRoutes
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -67,7 +68,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Icons
     implementation(libs.androidx.compose.material.icons.core)
-// Lottie
+    // Lottie
     implementation(libs.lottie.compose)
-
+    // Room3
+    implementation(libs.androidx.room3.runtime)
+    ksp(libs.androidx.room3.compiler)
+    implementation(libs.androidx.sqlite.bundled)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 }

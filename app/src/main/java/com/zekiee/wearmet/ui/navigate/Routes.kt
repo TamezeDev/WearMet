@@ -1,6 +1,7 @@
 package com.zekiee.wearmet.ui.navigate
 
 import androidx.navigation3.runtime.NavKey
+import com.zekiee.wearmet.domain.model.Location
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -10,10 +11,4 @@ data object Splash : NavKey
 data object Search : NavKey
 
 @Serializable
-data class MainWeather(
-    val name: String,
-    val region: String,
-    val flag: String,
-    val latitude: Double,
-    val longitude: Double
-) : NavKey
+data class MainWeather(val location: Location) : NavKey

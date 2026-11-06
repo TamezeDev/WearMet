@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,26 +29,35 @@ fun WeatherTopBar(
     locationRegion: String,
     locationFlag: String,
     isFavourite: Boolean,
-    onRefresh: () -> Unit,
     onToggleFavourite: () -> Unit,
-    onOpenFavourites: () -> Unit,
     onOpenSettings: () -> Unit,
     onSearch: () -> Unit
 ) {
-    val title: String = listOfNotNull(locationFlag, locationName).joinToString(" ")
+    val title = listOf(locationFlag, locationName)
+        .filter { it.isNotBlank() }
+        .joinToString(" ")
     CenterAlignedTopAppBar(
         title = {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(title, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text(
-                    text = locationRegion,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                if (locationRegion.isNotBlank()) {
+                    Text(
+                        text = locationRegion,
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+        },
+        navigationIcon = {
+            IconButton(onClick = onOpenSettings) {
+                Icon(
+                    Icons.Filled.Settings,
+                    contentDescription = stringResource(R.string.settings)
                 )
             }
         },
-        navigationIcon = { WeatherMenu(onOpenFavourites, onOpenSettings) },
         actions = {
             IconButton(onClick = onToggleFavourite) {
                 Icon(
@@ -67,6 +77,7 @@ fun WeatherTopBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.Transparent,
             titleContentColor = MaterialTheme.colorScheme.onBackground,
+            navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
             actionIconContentColor = MaterialTheme.colorScheme.onBackground
         )
     )
@@ -76,6 +87,6 @@ fun WeatherTopBar(
 @Composable
 fun ShowWeatherTopBar() {
     WearMetTheme {
-        WeatherTopBar("Algeciras", "Andalucía", "🇪🇸", false, {}, {}, {}, {}, {})
+        WeatherTopBar("Algeciras", "Andalucía", "🇪🇸", false, {}, {}, {})
     }
 }

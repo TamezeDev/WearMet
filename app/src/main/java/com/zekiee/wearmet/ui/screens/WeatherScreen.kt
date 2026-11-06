@@ -8,15 +8,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.zekiee.wearmet.domain.model.Location
 import com.zekiee.wearmet.ui.components.weatherScreen.ErrorView
 import com.zekiee.wearmet.ui.components.weatherScreen.LoadingView
 import com.zekiee.wearmet.ui.components.weatherScreen.WeatherContent
 import com.zekiee.wearmet.ui.components.weatherScreen.topbar.WeatherTopBar
-import com.zekiee.wearmet.ui.state.LocationUi
 import com.zekiee.wearmet.ui.state.OpenMeteoState
 import com.zekiee.wearmet.ui.theme.extendedColors
 import com.zekiee.wearmet.ui.viewmodel.WeatherViewModel
@@ -24,11 +26,13 @@ import com.zekiee.wearmet.ui.viewmodel.WeatherViewModel
 
 @Composable
 fun WeatherScreen(
-    location: LocationUi,
+    location: Location,
     onSearch: () -> Unit,
+    onOpenSettings: () -> Unit,
     viewModel: WeatherViewModel = viewModel()
 ) {
     LaunchedEffect(location) { viewModel.load(location) }
+    val isFavourite by viewModel.isFavourite.collectAsStateWithLifecycle()
 
     Box(
         Modifier
@@ -40,13 +44,11 @@ fun WeatherScreen(
             topBar = {
                 WeatherTopBar(
                     locationName = location.name,
-                    locationRegion = location.region,
-                    locationFlag = location.flag,
-                    isFavourite = viewModel.isFavourite,
-                    onRefresh = viewModel::refresh,
+                    locationRegion = location.region.orEmpty(),
+                    locationFlag = location.flag.orEmpty(),
+                    isFavourite = isFavourite,
                     onToggleFavourite = viewModel::toggleFavourite,
-                    onOpenFavourites = {},
-                    onOpenSettings = {},
+                    onOpenSettings = onOpenSettings,
                     onSearch = onSearch
                 )
             }

@@ -18,25 +18,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zekiee.wearmet.domain.model.Location
 import com.zekiee.wearmet.ui.components.searchScreen.ErrorText
+import com.zekiee.wearmet.ui.components.searchScreen.FavouritesSection
 import com.zekiee.wearmet.ui.components.searchScreen.LoadingItem
 import com.zekiee.wearmet.ui.components.searchScreen.LocationButton
 import com.zekiee.wearmet.ui.components.searchScreen.LocationList
 import com.zekiee.wearmet.ui.components.searchScreen.SearchTextField
 import com.zekiee.wearmet.ui.state.GeoCodingState
-import com.zekiee.wearmet.ui.state.LocationUi
 import com.zekiee.wearmet.ui.theme.WearMetTheme
 import com.zekiee.wearmet.ui.theme.extendedColors
+import com.zekiee.wearmet.ui.viewmodel.FavouritesViewModel
 import com.zekiee.wearmet.ui.viewmodel.LocationViewModel
 
 @Composable
 fun SearchScreen(
     onLocationSelected: (Location) -> Unit,
-    viewModel: LocationViewModel = viewModel()
+    viewModel: LocationViewModel = viewModel(),
+    favouritesViewModel: FavouritesViewModel = viewModel()
 ) {
     val state = viewModel.uiState
+    val favourites by favouritesViewModel.favourites.collectAsStateWithLifecycle()
     var searchText by rememberSaveable { mutableStateOf("") }
 
     Scaffold(containerColor = Color.Transparent) { paddingValues ->
@@ -62,7 +66,9 @@ fun SearchScreen(
                 Spacer(modifier = Modifier.padding(12.dp))
 
                 when (state) {
-                    is GeoCodingState.Waiting -> {}
+                    is GeoCodingState.Waiting -> if (favourites.isNotEmpty()) {
+                        FavouritesSection(favourites, onLocationSelected)
+                    }
                     GeoCodingState.Loading -> LoadingItem()
                     is GeoCodingState.Error -> ErrorText(state)
                     is GeoCodingState.Success -> LocationList(state.locations, onLocationSelected)
@@ -71,7 +77,6 @@ fun SearchScreen(
         }
     }
 }
-
 @Preview
 @Composable
 fun ShowSearchScreen() {
