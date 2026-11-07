@@ -1,7 +1,6 @@
 package com.zekiee.wearmet.ui.logicUI.weaather
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

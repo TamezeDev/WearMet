@@ -1,16 +1,19 @@
 package com.zekiee.wearmet.ui.viewmodel
 
+import com.zekiee.wearmet.widget.WearMetWidget
 import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.glance.appwidget.updateAll
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.zekiee.wearmet.R
 import com.zekiee.wearmet.data.repository.OpenMeteoRepository
 import com.zekiee.wearmet.domain.model.Location
 import com.zekiee.wearmet.domain.result.WeatherResult
-import com.zekiee.wearmet.local.data.AppDatabase
+import com.zekiee.wearmet.local.data.dataStore.LastLocationStore
+import com.zekiee.wearmet.local.data.room.AppDatabase
 import com.zekiee.wearmet.local.repository.FavouritesRepository
 import com.zekiee.wearmet.ui.state.OpenMeteoState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,9 +31,9 @@ class WeatherViewModel(app: Application) : AndroidViewModel(app) {
     private val favourites = FavouritesRepository(AppDatabase.get(app).favouriteDao())
     private var loadJob: Job? = null
     private val currentLocation = MutableStateFlow<Location?>(null)
-
     var uiState by mutableStateOf<OpenMeteoState>(OpenMeteoState.Loading)
         private set
+    private val lastLocation = LastLocationStore(app)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val isFavourite: StateFlow<Boolean> = currentLocation
@@ -41,6 +44,10 @@ class WeatherViewModel(app: Application) : AndroidViewModel(app) {
     fun load(location: Location) {
         if (location == currentLocation.value && uiState is OpenMeteoState.Success) return
         currentLocation.value = location
+        viewModelScope.launch {
+            lastLocation.save(location)
+            WearMetWidget().updateAll(getApplication())
+        }
         refresh()
     }
 

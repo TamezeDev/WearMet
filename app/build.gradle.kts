@@ -77,4 +77,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     // Location
     implementation(libs.play.services.location)
+    // Widget
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
+    // DataStore(preferences)
+    implementation(libs.androidx.datastore.preferences)
 }

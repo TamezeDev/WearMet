@@ -61,4 +61,9 @@
     <string name="location_permission_denied">Sin permiso de ubicación</string>
     <string name="location_unavailable">No se pudo obtener tu ubicación</string>
     <string name="location_disabled">Activa la ubicación para continuar</string>
+    <string name="widget_no_location">Abre WearMet y elige una ubicación</string>
+    <string name="widget_error">No se pudo cargar el tiempo</string>
+    <string name="widget_wind_label">Viento %1$s</string>
+    <string name="widget_gusts_label">Ráfagas</string>
+    <string name="widget_speed_kmh">%1$d km/h</string>
 </resources>

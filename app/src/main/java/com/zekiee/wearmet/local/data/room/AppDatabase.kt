@@ -1,4 +1,4 @@
-package com.zekiee.wearmet.local.data
+package com.zekiee.wearmet.local.data.room
 
 import android.content.Context
 import androidx.room3.Database

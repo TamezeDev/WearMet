@@ -59,6 +59,11 @@
     <string name="favourite_removed">Removed from favourite list</string>
     <string name="splash_developed_by">Developed by Ezequiel Tamayo</string>
     <string name="location_permission_denied">Without location permission</string>
-    <string name="location_unavailable">Not possible get your location</string>
+    <string name="location_unavailable">Not possible to get your location</string>
     <string name="location_disabled">Turn on location to continue</string>
+    <string name="widget_no_location">Open WearMet and choose a location</string>
+    <string name="widget_error">Not possible to load current time</string>
+    <string name="widget_wind_label">Wind %1$s</string>
+    <string name="widget_gusts_label">Gusts</string>
+    <string name="widget_speed_kmh">%1$d km/h</string>
 </resources>

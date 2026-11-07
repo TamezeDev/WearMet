@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.zekiee.wearmet.domain.model.Location
-import com.zekiee.wearmet.local.data.AppDatabase
+import com.zekiee.wearmet.local.data.room.AppDatabase
 import com.zekiee.wearmet.local.repository.FavouritesRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
