@@ -33,6 +33,6 @@ fun LocationButton(onClick: () -> Unit) {
 @Composable
 fun ShorLocationButton() {
     WearMetTheme {
-        LocationButton({})
+        LocationButton {}
     }
 }

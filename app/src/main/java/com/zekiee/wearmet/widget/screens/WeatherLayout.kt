@@ -16,7 +16,7 @@ import androidx.glance.text.TextStyle
 import com.zekiee.wearmet.ui.logicUI.weaather.WeatherCondition
 import com.zekiee.wearmet.ui.theme.WidgetColors
 import com.zekiee.wearmet.widget.components.WeatherHeader
-import com.zekiee.wearmet.widget.components.WindCard
+import com.zekiee.wearmet.widget.components.WindInfo
 import com.zekiee.wearmet.widget.state.WidgetState
 import kotlin.math.roundToInt
 
@@ -36,19 +36,21 @@ fun WeatherLayout(state: WidgetState.Data, compact: Boolean) {
             maxLines = 1,
             style = TextStyle(
                 color = WidgetColors.secondaryText,
-                fontSize = if (compact) 12.sp else 13.sp,
-                fontWeight = FontWeight.Medium,
+                fontSize = if (compact) 12.sp else 15.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
         )
+        Spacer(GlanceModifier.height(if (compact) 4.dp else 6.dp))
         WeatherHeader(icon, current.temperature.roundToInt(), compact)
-        if (!compact && today != null) {
+        if ( today != null) {
             Text(
                 text = "↑ ${today.temperatureMax.roundToInt()}°   ↓ ${today.temperatureMin.roundToInt()}°",
-                style = TextStyle(color = WidgetColors.secondaryText, fontSize = 12.sp)
+                style = TextStyle(color = WidgetColors.secondaryText, fontSize = if (compact) 12.sp else 14.sp)
             )
         }
-        Spacer(GlanceModifier.height(if (compact) 4.dp else 8.dp))
-        WindCard(current, compact)
+        WindInfo(current, compact)
     }
 }
+
+//            text = "${state.name} · ${java.time.LocalTime.now().withSecond(0).withNano(0)}",

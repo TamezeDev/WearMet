@@ -1,11 +1,9 @@
 package com.zekiee.wearmet.ui.viewmodel
 
-import com.zekiee.wearmet.widget.WearMetWidget
 import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.glance.appwidget.updateAll
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.zekiee.wearmet.R
@@ -13,9 +11,11 @@ import com.zekiee.wearmet.data.repository.OpenMeteoRepository
 import com.zekiee.wearmet.domain.model.Location
 import com.zekiee.wearmet.domain.result.WeatherResult
 import com.zekiee.wearmet.local.data.dataStore.LastLocationStore
+import com.zekiee.wearmet.local.data.dataStore.SettingsStore
 import com.zekiee.wearmet.local.data.room.AppDatabase
 import com.zekiee.wearmet.local.repository.FavouritesRepository
 import com.zekiee.wearmet.ui.state.OpenMeteoState
+import com.zekiee.wearmet.widget.updater.WidgetRefresh
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,11 +42,14 @@ class WeatherViewModel(app: Application) : AndroidViewModel(app) {
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
 
     fun load(location: Location) {
-        if (location == currentLocation.value && uiState is OpenMeteoState.Success) return
+        if (location == currentLocation.value && uiState is OpenMeteoState.Success) {
+            viewModelScope.launch { WidgetRefresh.refreshAll(getApplication()) }
+            return
+        }
         currentLocation.value = location
         viewModelScope.launch {
             lastLocation.save(location)
-            WearMetWidget().updateAll(getApplication())
+            WidgetRefresh.refreshAll(getApplication())
         }
         refresh()
     }
@@ -58,7 +61,10 @@ class WeatherViewModel(app: Application) : AndroidViewModel(app) {
         loadJob = viewModelScope.launch {
             uiState = when (val result =
                 repository.getWeatherData(location.latitude, location.longitude)) {
-                is WeatherResult.Success -> OpenMeteoState.Success(result.weather)
+                is WeatherResult.Success -> {
+                    WidgetRefresh.refreshAll(getApplication())
+                    OpenMeteoState.Success(result.weather)
+                }
                 WeatherResult.NetworkError -> OpenMeteoState.Error(R.string.error_network)
                 WeatherResult.ServerError -> OpenMeteoState.Error(R.string.error_server)
                 WeatherResult.UnknownError -> OpenMeteoState.Error(R.string.error_unknown)
@@ -69,7 +75,13 @@ class WeatherViewModel(app: Application) : AndroidViewModel(app) {
     fun toggleFavourite() {
         val location = currentLocation.value ?: return
         viewModelScope.launch {
-            if (isFavourite.value) favourites.remove(location.id) else favourites.add(location)
+            if (isFavourite.value) {
+                favourites.remove(location.id)
+                SettingsStore(getApplication()).clearPreferredIf(location.id)
+                WidgetRefresh.refreshAll(getApplication())
+            } else {
+                favourites.add(location)
+            }
         }
     }
 }

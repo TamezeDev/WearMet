@@ -1,6 +1,7 @@
 package com.zekiee.wearmet.ui.components.weatherScreen.topbar
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -15,10 +16,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.zekiee.wearmet.R
 import com.zekiee.wearmet.ui.theme.WearMetTheme
 
@@ -51,7 +54,7 @@ fun WeatherTopBar(
             }
         },
         navigationIcon = {
-            IconButton(onClick = onOpenSettings) {
+            IconButton(onClick = onOpenSettings, modifier = Modifier.padding(start = 10.dp)) {
                 Icon(
                     Icons.Filled.Settings,
                     contentDescription = stringResource(R.string.settings)
@@ -67,7 +70,7 @@ fun WeatherTopBar(
                     )
                 )
             }
-            IconButton(onClick = onSearch) {
+            IconButton(onClick = onSearch, modifier = Modifier.padding(end = 10.dp)) {
                 Icon(
                     Icons.Filled.Search,
                     contentDescription = stringResource(R.string.alt_search_icon)

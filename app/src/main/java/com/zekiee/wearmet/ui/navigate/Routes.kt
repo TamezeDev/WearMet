@@ -12,3 +12,6 @@ data object Search : NavKey
 
 @Serializable
 data class MainWeather(val location: Location) : NavKey
+
+@Serializable
+data object Settings : NavKey

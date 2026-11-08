@@ -1,6 +1,9 @@
+@file:UseSerializers(LocalDateTimeSerializer::class)
+
 package com.zekiee.wearmet.domain.model
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 
 @Serializable
 data class Location(

@@ -9,7 +9,7 @@
     <string name="favourites_locations">Favourites</string>
     <string name="settings">Settings</string>
 
-    <!-- DESCRIPTION IMAGES -->
+    <!-- DESCRIPTION TEXTS -->
     <string name="alt_welcome_image">Welcome logo</string>
     <string name="alt_opt_menu">Options menu</string>
     <string name="alt_favourite_icon">Favourite icon</string>
@@ -39,7 +39,7 @@
     <string name="detail_sunrise">Sunrise</string>
     <string name="detail_sunset">Sunset</string>
 
-    <!-- TEXTS WITH VALUES -->
+    <!-- APP VALUE TEXTS -->
     <string name="feels_like">Feels like %1$d°</string>
     <string name="max_min">High %1$d° · Low %2$d°</string>
     <string name="value_kmh">%1$d km/h</string>
@@ -61,9 +61,27 @@
     <string name="location_permission_denied">Without location permission</string>
     <string name="location_unavailable">Not possible to get your location</string>
     <string name="location_disabled">Turn on location to continue</string>
+
+    <!-- WIDGET TEXTS -->
     <string name="widget_no_location">Open WearMet and choose a location</string>
     <string name="widget_error">Not possible to load current time</string>
     <string name="widget_wind_label">Wind %1$s</string>
     <string name="widget_gusts_label">Gusts</string>
     <string name="widget_speed_kmh">%1$d km/h</string>
+
+    <!-- CONFIG TEXTS -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Return</string>
+    <string name="settings_section_start">Home</string>
+    <string name="settings_splash">Show splash screen</string>
+    <string name="settings_splash_short">1 s</string>
+    <string name="settings_splash_normal">2 s</string>
+    <string name="settings_auto_open">Open directly saved locate</string>
+    <string name="settings_auto_open_desc">Not to search when the app is opening</string>
+    <string name="settings_section_widget">Widget and favourite location</string>
+    <string name="settings_preferred">Location</string>
+    <string name="settings_preferred_none">Choose your favourite</string>
+    <string name="settings_no_favourites">Add a favourite location to enable this options</string>
+    <string name="settings_update_interval">Update each</string>
+    <string name="settings_interval_hours">%1$d h</string>
 </resources>

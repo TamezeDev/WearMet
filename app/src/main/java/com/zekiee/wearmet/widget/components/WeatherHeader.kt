@@ -27,7 +27,7 @@ fun WeatherHeader(icon: Int, temperature: Int, compact: Boolean) {
         Image(
             provider = ImageProvider(icon),
             contentDescription = null,
-            modifier = GlanceModifier.size(if (compact) 34.dp else 46.dp)
+            modifier = GlanceModifier.size(if (compact) 34.dp else 34.dp)
         )
         Spacer(GlanceModifier.width(6.dp))
         Text(

@@ -40,32 +40,27 @@ import com.zekiee.wearmet.domain.model.HourlyForecast
 import com.zekiee.wearmet.ui.components.weatherScreen.hourlyData.HourlyItemsRow
 import com.zekiee.wearmet.ui.logicUI.weaather.WeatherCondition
 import java.time.format.TextStyle
-import java.util.Locale
 import kotlin.math.roundToInt
+import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 fun DailyRow(
-    day: DailyForecast,
-    isToday: Boolean,
-    hours: List<HourlyForecast>,
-    daily: List<DailyForecast>
+    day: DailyForecast, isToday: Boolean, hours: List<HourlyForecast>, daily: List<DailyForecast>
 ) {
     var expanded by rememberSaveable(day.date.toString()) { mutableStateOf(false) }
     val rotation by animateFloatAsState(if (expanded) 180f else 0f, label = "chevron")
     val condition = WeatherCondition.fromCode(day.weatherCode)
     val mutedColor = LocalContentColor.current.copy(alpha = 0.6f)
     val dayName = if (isToday) stringResource(R.string.today)
-    else day.date.dayOfWeek
-        .getDisplayName(TextStyle.SHORT, Locale.getDefault())
+    else day.date.dayOfWeek.getDisplayName(TextStyle.SHORT, LocalLocale.current.platformLocale)
         .replaceFirstChar { it.uppercase() }
     Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(enabled = hours.isNotEmpty()) { expanded = !expanded }
-                .padding(horizontal = 20.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+                .padding(horizontal = 8.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically) {
             Text(
                 dayName,
                 Modifier.width(44.dp),
@@ -90,7 +85,12 @@ fun DailyRow(
                     )
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Image(painterResource(R.drawable.ic_wind), null, Modifier.size(14.dp))
+                    Icon(
+                        painterResource(R.drawable.ic_wind),
+                        null,
+                        Modifier.size(14.dp),
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
                     Spacer(Modifier.width(6.dp))
                     Text(
                         "${day.windSpeedMax.roundToInt()} km/h",
@@ -109,16 +109,12 @@ fun DailyRow(
                     withStyle(SpanStyle(color = mutedColor)) {
                         append("${day.temperatureMin.roundToInt()}°")
                     }
-                },
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = 1
+                }, style = MaterialTheme.typography.bodyLarge, maxLines = 1
             )
             Icon(
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = stringResource(
+                imageVector = Icons.Default.KeyboardArrowDown, contentDescription = stringResource(
                     if (expanded) R.string.alt_collapse_hours else R.string.alt_expand_hours
-                ),
-                modifier = Modifier
+                ), modifier = Modifier
                     .size(20.dp)
                     .rotate(rotation)
             )

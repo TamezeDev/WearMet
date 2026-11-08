@@ -15,17 +15,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zekiee.wearmet.R
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
-fun SplashScreen(onTimeout: () -> Unit) {
+fun SplashScreen(durationMillis: Long, onTimeout: () -> Unit) {
+    LaunchedEffect(durationMillis) {
+        delay(durationMillis.milliseconds)
+        onTimeout()
+    }
     // Wait time to next screen
     LaunchedEffect(true) {
-        delay(3000.milliseconds)
+        delay(2000.milliseconds)
         onTimeout()
     }
 
@@ -46,10 +49,4 @@ fun SplashScreen(onTimeout: () -> Unit) {
                 .padding(bottom = 32.dp)
         )
     }
-}
-
-@Preview
-@Composable
-fun ShowStartScreen() {
-    SplashScreen {}
 }

@@ -15,19 +15,20 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.coroutines.resume
+import kotlin.time.Duration.Companion.milliseconds
 
 class DeviceLocationProvider(private val context: Context) {
     private val client = LocationServices.getFusedLocationProviderClient(context)
 
     suspend fun currentLocation(fallbackName: String): Location? {
-        val loc = withTimeoutOrNull(10_000) { fetchCurrent() } ?: fetchLast()
+        val loc = withTimeoutOrNull(10_000.milliseconds) { fetchCurrent() } ?: fetchLast()
         if (loc == null) {
             Log.d("WearMetLocation", "No location from current or last")
             return null
         }
         Log.d("WearMetLocation", "Got ${loc.latitude}, ${loc.longitude}")
 
-        val address = withTimeoutOrNull(3_000) { reverseGeocode(loc.latitude, loc.longitude) }
+        val address = withTimeoutOrNull(3_000.milliseconds) { reverseGeocode(loc.latitude, loc.longitude) }
         return Location(
             id = ("${"%.2f".format(loc.latitude)},${"%.2f".format(loc.longitude)}").hashCode(),
             name = address?.locality ?: address?.subAdminArea ?: address?.adminArea ?: fallbackName,
@@ -60,7 +61,7 @@ class DeviceLocationProvider(private val context: Context) {
         if (!Geocoder.isPresent()) return null
         val geocoder = Geocoder(context)
         return if (Build.VERSION.SDK_INT >= 33) {
-            suspendCancellableCoroutine<Address?> { cont ->
+            suspendCancellableCoroutine { cont ->
                 geocoder.getFromLocation(lat, lon, 1, object : Geocoder.GeocodeListener {
                     override fun onGeocode(addresses: MutableList<Address>) {
                         cont.resume(addresses.firstOrNull())

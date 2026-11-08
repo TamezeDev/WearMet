@@ -1,7 +1,12 @@
+@file:UseSerializers(LocalDateTimeSerializer::class)
 package com.zekiee.wearmet.domain.model
 
-import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 
+
+import java.time.LocalDateTime
+@Serializable
 data class HourlyForecast(
     val time: LocalDateTime,
     val temperature: Double,

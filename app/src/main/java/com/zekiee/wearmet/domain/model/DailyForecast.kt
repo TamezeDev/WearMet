@@ -1,7 +1,11 @@
-package com.zekiee.wearmet.domain.model
+@file:UseSerializers(LocalDateTimeSerializer::class, LocalDateSerializer::class)package com.zekiee.wearmet.domain.model
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import java.time.LocalDate
 import java.time.LocalDateTime
+
+@Serializable
 data class DailyForecast(
     val date: LocalDate,
     val weatherCode: Int,
