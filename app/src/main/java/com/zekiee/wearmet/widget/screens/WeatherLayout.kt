@@ -52,5 +52,3 @@ fun WeatherLayout(state: WidgetState.Data, compact: Boolean) {
         WindInfo(current, compact)
     }
 }
-
-//            text = "${state.name} · ${java.time.LocalTime.now().withSecond(0).withNano(0)}",
